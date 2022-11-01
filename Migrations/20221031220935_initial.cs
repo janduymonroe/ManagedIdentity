@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace ManagedIdentity.Migrations
 {
-    public partial class inicial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,23 +12,25 @@ namespace ManagedIdentity.Migrations
                 name: "dbo");
 
             migrationBuilder.CreateTable(
-                name: "WeatherForecasts",
+                name: "Wizzers",
                 schema: "dbo",
                 columns: table => new
                 {
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TemperatureC = table.Column<int>(type: "int", nullable: false),
-                    Summary = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hobby = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Wizzers", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "WeatherForecasts",
+                name: "Wizzers",
                 schema: "dbo");
         }
     }

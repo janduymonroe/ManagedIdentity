@@ -1,4 +1,5 @@
-﻿using Azure.Security.KeyVault.Secrets;
+﻿using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagedIdentity.Controllers;
@@ -9,18 +10,18 @@ public class KeyVaultController : ControllerBase
 {
     private readonly SecretClient _secretClient;
 
-    public KeyVaultController(SecretClient secretClient)
+    public KeyVaultController()
     {
-        _secretClient = new SecretClient("https://wizmikv.vault.azure.net/secrets/Hoje/a15bd58616e54bd796af716b4fa8062a");
+        _secretClient = new SecretClient(new Uri("https://meussegredos.vault.azure.net/"), new DefaultAzureCredential());
     }
 
 
     [HttpGet]
-    public async Task<string> Get()
+    public async Task<string> Get(string key)
     {
-        var keyValueSecret = await _secretClient.GetSecretAsync(secretName);
+        var keyValueSecret = await _secretClient.GetSecretAsync(key);
 
-        return keyValueSecret.Value.ToString();
+        return keyValueSecret.Value.Value;
     }
 
     [HttpGet("{id}")]

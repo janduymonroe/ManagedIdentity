@@ -19,9 +19,16 @@ namespace ManagedIdentity.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<Wizzer>> Get()
+        public async Task<ActionResult<IEnumerable<Wizzer>>> Get()
         {
-            return await _context.Wizzers.ToListAsync();
+            try
+            {
+                return await _context.Wizzers.ToListAsync();
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost("{nome}/{hobby}")]

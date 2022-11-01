@@ -2,8 +2,7 @@
 using Azure.Storage.Blobs;
 using Azure;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Azure.Identity;
 
 namespace ManagedIdentity.Controllers
 {
@@ -14,13 +13,13 @@ namespace ManagedIdentity.Controllers
         private readonly BlobServiceClient _blobServiceClient;
         public BlobStorageController()
         {
-            _blobServiceClient = new BlobServiceClient("DefaultEndpointsProtocol=https;AccountName=wizstorage001;AccountKey=wcCOYAef4fnafUFsROqPxPyvJhy/LGzv+udMpV5JcN+ufV0uY3zBMqTBZ60Aa9lIieolrC1wGh50+AStfOOKEQ==;EndpointSuffix=core.windows.net"); ;
+            _blobServiceClient = new BlobServiceClient(new Uri("https://wizmanagedidentity.blob.core.windows.net/"), new DefaultAzureCredential());
+            
         }
 
         [HttpGet("Storage")]
         public Pageable<BlobContainerItem> GetAccessStorage()
         {
-
             var container = _blobServiceClient.GetBlobContainers();
 
             return container;

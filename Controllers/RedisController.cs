@@ -11,7 +11,14 @@ namespace ManagedIdentity.Controllers
         IDatabase _redis;
         public RedisController()
         {
-            _redisConnection = ConnectionMultiplexer.Connect("managedidentityredis.redis.cache.windows.net:6380,password=TGRmiKRsj7tUZZBwPtPQbT2ht9jYYccoSAzCaAW2NYs=,ssl=True,abortConnect=False");
+            var options = new ConfigurationOptions();
+            options.EndPoints.Add("wizmanagedidentity.redis.cache.windows.net:6380");
+            options.ConnectRetry = 2;
+            options.ConnectTimeout = 10000;
+            options.Ssl = true;
+
+            _redisConnection = ConnectionMultiplexer.Connect(options);
+
             _redis = _redisConnection.GetDatabase();
         }
 

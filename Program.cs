@@ -1,6 +1,5 @@
 using ManagedIdentity.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,16 +9,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationContext>(opt =>
 {
-    opt.UseSqlServer("Server=tcp:midb.database.windows.net,1433;Initial Catalog=ManagedIdentity;Persist Security Info=False;User ID=janduymonroe@wizsolucoes.com.br;Password=Suxmet13!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Password\";");
+    opt.UseSqlServer("Server=tcp:wizmanagedidentity.database.windows.net,1433;Initial Catalog=wizmanagedidentity;Persist Security Info=False;User ID=janduymonroe@wizsolucoes.com.br;MultipleActiveResultSets=False;Encrypt=True;Authentication=Active Directory Integrated");
 });
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

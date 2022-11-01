@@ -1,4 +1,7 @@
-﻿using ManagedIdentity.Model;
+﻿using Azure.Core;
+using Azure.Identity;
+using ManagedIdentity.Model;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace ManagedIdentity.Context
@@ -9,12 +12,7 @@ namespace ManagedIdentity.Context
 
         public ApplicationContext(DbContextOptions opt) : base(opt)
         {
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

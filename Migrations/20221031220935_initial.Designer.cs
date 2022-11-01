@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManagedIdentity.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220925135752_mudanca")]
-    partial class mudanca
+    [Migration("20221031220935_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
