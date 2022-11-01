@@ -13,8 +13,7 @@ namespace ManagedIdentity.Controllers
         private readonly BlobServiceClient _blobServiceClient;
         public BlobStorageController()
         {
-            _blobServiceClient = new BlobServiceClient(new Uri("https://wizmanagedidentity.blob.core.windows.net/"), new DefaultAzureCredential());
-            
+            _blobServiceClient = new BlobServiceClient(new Uri("{URI do blob}"), new DefaultAzureCredential());
         }
 
         [HttpGet("Storage")]

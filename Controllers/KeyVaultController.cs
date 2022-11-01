@@ -12,7 +12,7 @@ public class KeyVaultController : ControllerBase
 
     public KeyVaultController()
     {
-        _secretClient = new SecretClient(new Uri("https://meussegredos.vault.azure.net/"), new DefaultAzureCredential());
+        _secretClient = new SecretClient(new Uri("URI do key vault"), new DefaultAzureCredential());
     }
 
 

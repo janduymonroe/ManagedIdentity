@@ -9,7 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationContext>(opt =>
 {
-    opt.UseSqlServer("Server=tcp:wizmanagedidentity.database.windows.net,1433;Initial Catalog=wizmanagedidentity;Persist Security Info=False;User ID=janduymonroe@wizsolucoes.com.br;MultipleActiveResultSets=False;Encrypt=True;Authentication=Active Directory Integrated");
+    opt.UseSqlServer("{Connection String}");
 });
 
 var app = builder.Build();
