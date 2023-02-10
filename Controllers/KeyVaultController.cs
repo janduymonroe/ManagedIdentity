@@ -11,16 +11,13 @@ public class KeyVaultController : ControllerBase
 
     public KeyVaultController(SecretClient secretClient)
     {
-        _secretClient = new SecretClient("https://wizmikv.vault.azure.net/secrets/Hoje/a15bd58616e54bd796af716b4fa8062a");
     }
 
 
     [HttpGet]
     public async Task<string> Get()
     {
-        var keyValueSecret = await _secretClient.GetSecretAsync(secretName);
-
-        return keyValueSecret.Value.ToString();
+        return null;
     }
 
     [HttpGet("{id}")]
