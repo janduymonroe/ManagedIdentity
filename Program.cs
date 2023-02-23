@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationContext>(opt =>
 {
-    opt.UseSqlServer("Server=tcp:midb.database.windows.net,1433;Initial Catalog=ManagedIdentity;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Password\";");
+    opt.UseSqlServer("Server=tcp:midb.database.windows.net,1433;Initial Catalog=ManagedIdentity;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=Active Directory Default");
 });
 
 var app = builder.Build();
